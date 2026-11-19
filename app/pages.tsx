@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router";
 import { useFinance } from "./context/FinanceContext";
 import {
   categories,
@@ -75,15 +76,15 @@ export function DashboardPage({ onAddTransaction }: PageProps) {
       </Panel>
       <Panel className="radar-preview">
         <div className="preview-radar-art"><span className="radar-ring ring-1" /><span className="radar-ring ring-2" /><span className="radar-sweep" /><span className="radar-ping" /></div>
-        <div className="preview-copy"><Eyebrow>THE LEAK RADAR</Eyebrow><h2>Small things<br />add up.</h2><p>{food.length > 1 ? `${food.length} food moments found. That's ${formatCurrency(food.reduce((sum, item) => sum + item.amount, 0), preferences.currency)} in this month's trail.` : "A pattern is hiding in the everyday."}</p><a className="text-link" href="/radar">Investigate patterns <Icon name="arrow" size={15} /></a></div>
+        <div className="preview-copy"><Eyebrow>THE LEAK RADAR</Eyebrow><h2>Small things<br />add up.</h2><p>{food.length > 1 ? `${food.length} food moments found. That's ${formatCurrency(food.reduce((sum, item) => sum + item.amount, 0), preferences.currency)} in this month's trail.` : "A pattern is hiding in the everyday."}</p><Link className="text-link" to="/radar">Investigate patterns <Icon name="arrow" size={15} /></Link></div>
       </Panel>
       <Panel className="weather-preview">
         <div><Eyebrow>FINANCIAL WEATHER</Eyebrow><h2>Mostly<br /><em>within reach.</em></h2><p>A straight-line estimate, not a promise.</p></div>
         <div className="weather-number"><span>EST. MONTH END</span><strong>{formatCurrency(balance - (expenses / Math.max(1, new Date().getDate()) * (new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate())), preferences.currency)}</strong><span>Based on this month's average daily spend</span></div>
-        <a className="text-link" href="/weather">Read the forecast <Icon name="arrow" size={15} /></a>
+        <Link className="text-link" to="/weather">Read the forecast <Icon name="arrow" size={15} /></Link>
       </Panel>
       {firstMission && <Panel className="mission-panel"><div className="mission-icon"><Icon name="spark" size={24} /></div><div className="mission-copy"><Eyebrow>ACTIVE SIDE QUEST</Eyebrow><h2>{firstMission.title}</h2><p>{firstMission.detail}</p><ProgressLine value={firstMission.progress} max={firstMission.target} /></div><span className="mission-xp">+{firstMission.xp} XP</span></Panel>}
-      {largestCategory && <Panel className="insight-strip"><span className="insight-star">✳</span><div><Eyebrow>ONE THING TO NOTICE</Eyebrow><p><strong>{largestCategory.category}</strong> is your biggest category this month at <strong>{formatCurrency(largestCategory.amount, preferences.currency)}</strong>. Not a judgment. Just a clue.</p></div><a href="/rewind" className="text-link">See the trail <Icon name="arrow" size={15} /></a></Panel>}
+      {largestCategory && <Panel className="insight-strip"><span className="insight-star">✳</span><div><Eyebrow>ONE THING TO NOTICE</Eyebrow><p><strong>{largestCategory.category}</strong> is your biggest category this month at <strong>{formatCurrency(largestCategory.amount, preferences.currency)}</strong>. Not a judgment. Just a clue.</p></div><Link to="/rewind" className="text-link">See the trail <Icon name="arrow" size={15} /></Link></Panel>}
     </div>
   </div>;
 }

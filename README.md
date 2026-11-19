@@ -44,6 +44,10 @@ npm run build
 
 ## Deployment
 
+### Vercel
+
+Import this repository into Vercel with the project root set to the repository root. Vercel uses `vercel.json` to build the static React Router app and serve client-side routes such as `/MISCHIEF`.
+
 ### Docker Deployment
 
 To build and run using Docker:
